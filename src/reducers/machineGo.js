@@ -1,11 +1,5 @@
 import { BLACK, GRID_SIZE, WHITE } from '../types';
 
-const WIN_SCORE = 243;
-const TYPE_4_SCORE = WIN_SCORE / 9;
-const TYPE_3_SCORE = TYPE_4_SCORE / 3;
-const TYPE_2_SCORE = TYPE_3_SCORE / 3;
-const TYPE_1_SCORE = TYPE_2_SCORE / 3;
-
 const TYPE_SCORE = {
   [BLACK]: {
     5: 100000,
@@ -23,8 +17,6 @@ const TYPE_SCORE = {
   }
 };
 
-const sign = (color) => (color === BLACK ? 1 : -1);
-
 const horizontalScore = gomoku => {
   let score = 0;
   for (let row = 0; row < GRID_SIZE; row++) {
@@ -37,9 +29,6 @@ const horizontalScore = gomoku => {
           right++;
         }
         if (right - col >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (right - col === 3) {
           if (col - 1 >= 0 && gomoku[row][col-1].color === null) {
@@ -89,9 +78,6 @@ const verticalScore = gomoku => {
           down++;
         }
         if (down - row >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (down - row === 3) {
           if (row - 1 >= 0 && gomoku[row-1][col].color === null) {
@@ -145,9 +131,6 @@ const leftDiagonalScore = gomoku => {
         }
         const len = nextRow - startRow;
         if (len >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (len === 3) {
           if (startRow - 1 >= 0 && startCol - 1 >= 0 && gomoku[startRow-1][startCol-1].color === null) {
@@ -198,9 +181,6 @@ const leftDiagonalScore = gomoku => {
         }
         const len = nextRow - startRow;
         if (len >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (len === 3) {
           if (startRow - 1 >= 0 && startCol - 1 >= 0 && gomoku[startRow-1][startCol-1].color === null) {
@@ -256,9 +236,6 @@ const rightDiagonalScore = gomoku => {
         }
         const len = nextRow - startRow;
         if (len >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (len === 3) {
           if (startRow - 1 >= 0 && startCol + 1 <GRID_SIZE && gomoku[startRow-1][startCol+1].color === null) {
@@ -309,9 +286,6 @@ const rightDiagonalScore = gomoku => {
         }
         const len = nextRow - startRow;
         if (len >= 4) {
-          if (color === WHITE) {
-            console.log('find white 5 in row');
-          }
           score += TYPE_SCORE[color][5];
         } else if (len === 3) {
           if (startRow - 1 >= 0 && startCol + 1 <GRID_SIZE && gomoku[startRow-1][startCol+1].color === null) {
